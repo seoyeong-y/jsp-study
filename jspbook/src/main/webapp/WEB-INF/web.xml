@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
+                             http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	version="3.1">
+
+	<servlet>
+		<description>속성 관리 예제</description>
+		<display-name>PropertyServlet</display-name>
+		<servlet-name>PropertyServlet</servlet-name>
+		<servlet-class>jspbook.ch10.PropertyServlet</servlet-class>
+		<init-param>
+			<param-name>name1</param-name>
+			<param-value>user1</param-value>
+		</init-param>
+		<init-param>
+			<param-name>name2</param-name>
+			<param-value>user2</param-value>
+		</init-param>
+	</servlet>
+
+	<context-param>
+		<param-name>workspace</param-name>
+		<param-value>/Users/yangseoyeong/ysydev</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>name3</param-name>
+		<param-value>김길동</param-value>
+	</context-param>
+
+
+	<context-param>
+		<param-name>encoding</param-name>
+		<param-value>utf-8</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>profile</param-name>
+		<param-value>/Users/yangseoyeong/ysydev/my.conf</param-value>
+	</context-param>
+
+</web-app>

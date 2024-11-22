@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="http://code.jquery.com/jquery-3.7.1.js"></script>
+</head>
+<body>
+	<button id="request">request-Ajax-jQuery</button>
+	<div id="target"></div>
+
+	<script>
+	$("#request").click(function() {
+		$.ajax({
+			url:"http://localhost:8080/JsonServlet?key=list",
+					type:"GET",
+					dataType: "json",
+					success: function(data) {
+						if(data.length > 0) {
+							alert("SUCCESS-성공");
+							console.log("SUCCESS-성공");
+							let table = $("<table width=100% border=1 />");
+							
+							for (let i in data) {
+								let $id = data[i].id;
+								let $passwd = data[i].passwd;
+								let $username = data[i].username;
+								let $snum = data[i].snum;
+								let $depart = data[i].depart;
+								let $mobile = data[i].mobile;
+								let $email = data[i].email;
+								
+								let row = $("<tr/>").append(
+									$("<td/>").text($id),
+									$("<td/>").text($passwd),
+									$("<td/>").text($username),
+									$("<td/>").text($snum),
+									$("<td/>").text($depart),
+									$("<td/>").text($mobile),
+									$("<td/>").text($email)	
+								);
+								table.append(row);
+							}
+							$("#target").append(table);
+						}
+					},
+					error: function(request, status, error) {
+						alert("failure-통신실패");
+						console.log(error);
+					}
+		});
+	});
+	</script>
+</body>
+</html>

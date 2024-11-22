@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ajax</title>
+<script>
+	function sendRequest() {
+		const xhr = new XMLHttpRequest();
+		xhr.open("GET", "http://localhost:8080/JsonServlet?key=list");
+		xhr.send();
+
+		xhr.onload = function() {
+			if (xhr.status === 200) {
+				alert("success-성공");
+				console.log(xhr.responseText);
+				let div = document.getElementById("target");
+				let table = document.createElement("table");
+				table.border = 1;
+				table.width = "100%";
+				const data = JSON.parse(xhr.responseText);
+				
+				for (let i in data) {
+					let row = document.createElement("tr");
+					let idCell = document.createElement("td");
+					let passwdCell = document.createElement("td");
+					let usernameCell = document.createElement("td");
+					let snumCell = document.createElement("td");
+					let departCell = document.createElement("td");
+					let mobileCell = document.createElement("td");
+					let emailCell = document.createElement("td");
+
+					idCell.innerText = data[i].id;
+					passwdCell.innerText = data[i].passwd;
+					usernameCell.innerText = data[i].username;
+					snumCell.innerText = data[i].snum;
+					departCell.innerText = data[i].depart;
+					mobileCell.innerText = data[i].mobile;
+					emailCell.innerText = data[i].email;
+
+					row.appendChild(idCell);
+					row.appendChild(passwdCell);
+					row.appendChild(usernameCell);
+					row.appendChild(snumCell);
+					row.appendChild(departCell);
+					row.appendChild(mobileCell);
+					row.appendChild(emailCell);
+					table.appendChild(row);
+				}
+				div.appendChild(table);
+			} else {
+				alert("failure-실패");
+				console.log(xhr.statusText);
+			}
+		}
+	}
+</script>
+</head>
+<body>
+	<button id="request" onClick="sendRequest()">request-Ajax-JavaScript</button>
+	<div id="target"></div>
+</body>
+</html>
