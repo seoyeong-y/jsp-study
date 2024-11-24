@@ -4,36 +4,51 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Member Update</title>
-<link rel="stylesheet" href="resources/student.css" type="text/css"></link>
+<title>회원 정보 수정</title>
+<style>
+.form-container {
+	width: 300px;
+	margin: 0 auto;
+}
+
+.input-field {
+	width: 100%;
+	padding: 10px;
+	margin: 10px 0;
+}
+
+.btn {
+	width: 100%;
+	padding: 10px;
+	background-color: #007BFF;
+	color: white;
+	border: none;
+	cursor: pointer;
+}
+
+.btn:hover {
+	background-color: #0056b3;
+}
+</style>
 </head>
 <body>
-	<header>Member Update</header>
-	<nav>개인정보를 수정하세요.</nav>
-	<form class=form_one
-		action="http://localhost:8080/ysy_mvcdb/StudentServlet?cmd=update"
-		method="post">
-		<%
-		StudentVO student = (StudentVO) request.getAttribute("student");
-		%>
-		<ul>
-			<li>계정 <input type="text" name="id" value=<%=student.getId()%>
-				readonly></li>
-			<li>비밀번호 <input type="password" name="passwd"
-				value=<%=student.getPasswd()%> autofocus></li>
-			<li>이름 <input type="text" name="username"
-				value=<%=student.getUsername()%>></li>
-			<li>학번 <input type="text" name="snum"
-				value=<%=student.getSnum()%>></li>
-			<li>학과 <input type="text" name="depart"
-				value=<%=student.getDepart()%>></li>
-			<li>모바일 <input type="text" name="mobile"
-				value=<%=student.getMobile()%>></li>
-			<li>이메일 <input type="text" name="email"
-				value=<%=student.getEmail()%>></li>
-			<li class=form_one><input type="submit" name="submit"
-				value="최종 수정">
-		</ul>
-	</form>
+	<h1>회원 정보 수정</h1>
+	<div class="form-container">
+		<form action="MemberServlet?cmd=update" method="post">
+			<input type="text" name="id" value="${member.id}" class="input-field"
+				readonly> <input type="password" name="passwd"
+				value="${member.passwd}" class="input-field" required> <input
+				type="text" name="username" value="${member.username}"
+				class="input-field" required> <input type="number"
+				name="age" value="${member.age}" class="input-field" required>
+			<select name="sex" class="input-field" required>
+				<option value="남" ${member.sex == '남' ? 'selected' : ''}>남</option>
+				<option value="여" ${member.sex == '여' ? 'selected' : ''}>여</option>
+			</select> <input type="tel" name="phone" value="${member.phone}"
+				class="input-field" required> <input type="hidden"
+				name="cmd" value="update">
+			<button type="submit" class="btn">수정하기</button>
+		</form>
+	</div>
 </body>
 </html>
